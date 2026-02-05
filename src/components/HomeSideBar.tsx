@@ -15,9 +15,13 @@ export default function HomeSidebar({ mostLiked }: HomeSidebarProps) {
         <div className="flex items-center gap-2 mb-4">
           <h3 className="font-bold text-xl">Most liked</h3>
         </div>
-        <div className="space-y-1">
+        <div className="space-y-1 animate-stagger">
           {mostLiked.map((post, index) => (
-            <div>
+            <div
+              key={post.id}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+            >
               <Link
                 key={post.id}
                 href={`/blog/${post.id}`}

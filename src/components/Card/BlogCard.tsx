@@ -22,14 +22,15 @@ interface BlogCardProps {
 export default function BlogCard({ post }: BlogCardProps) {
   const imageUrl = getImageUrl(post.imageUrl);
   return (
-    <Card className="grid md:grid-cols-5 gap-0 p-0 shadow-none rounded-none border-0 border-b-2 border-neutral-200 pb-4">
+    <Card className="grid md:grid-cols-5 gap-0 p-0 shadow-none rounded-none border-0 border-b-2 border-neutral-200 pb-4 card-hover group">
       <CardHeader className="col-span-2 ">
         <Link href={`/blog/${post.id}`}>
-          <div className="relative w-full h-48 md:h-52 overflow-hidden hidden md:block rounded-md">
+          <div className="relative w-full h-48 md:h-52 overflow-hidden hidden md:block rounded-md image-hover">
             <Image
               src={imageUrl}
               alt={post.title}
               fill
+              priority
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 640px) 100vw, 224px"
             />
@@ -48,7 +49,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-2 py-1.5 mr-2 border rounded-md bg-[var(--accent-light)] text-neutral-900 font-medium"
+                className="text-xs px-2 py-1.5 mr-2 border rounded-md bg-[var(--accent-light)] text-neutral-900 font-medium tag-hover cursor-pointer"
               >
                 {tag}
               </span>
@@ -70,7 +71,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                     alt={post.author.name}
                     width={32}
                     height={32}
-                    className="rounded-full object-cover ring-2 ring-white shadow-sm"
+                    className="rounded-full object-cover ring-2 ring-white shadow-sm avatar-hover"
                   />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-primary-300 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white shadow-sm">

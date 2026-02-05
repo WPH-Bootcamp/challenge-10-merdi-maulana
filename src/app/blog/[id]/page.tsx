@@ -72,11 +72,13 @@ export default async function BlogDetailPage({ params }: BlogDetailProps) {
   const imageUrl = getImageUrl(post.imageUrl);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 pt-4">
+    <div className="max-w-[800px] mx-auto px-4 pt-4">
       <article>
         <div>
           <div>
-            <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
+            <h1 className="text-2xl md:text-4xl font-bold mb-4">
+              {post.title}
+            </h1>
 
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (

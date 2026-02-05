@@ -25,8 +25,14 @@ export default function Header({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
   const searchModalRef = useRef<HTMLDivElement>(null);
+
+  // Set mounted state on client to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -182,16 +188,25 @@ export default function Header({
             </div>
           ) : (
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center">
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                 <Image
                   src="/logo-symbol.svg"
                   alt="Logo"
                   width={22}
                   height={22}
-                  style={{ height: "auto" }}
+                  className="md:hidden transition-transform duration-300"
+                  style={{ width: "auto", height: "auto" }}
+                />
+                <Image
+                  src="/logo-symbol.svg"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                  className="hidden md:block transition-transform duration-300"
+                  style={{ width: "auto", height: "auto" }}
                 />
               </div>
-              <span className="text-base font-bold md:text-2xl md:font-semibold md:leading-9 text-[var(--text-primary)]">
+              <span className="text-base font-bold md:text-2xl md:font-semibold md:leading-9 text-[var(--text-primary)] transition-colors duration-300 group-hover:text-[var(--accent-primary)]">
                 Your<span className="text-[var(--accent-primary)]"> Logo</span>
               </span>
             </Link>
@@ -228,7 +243,7 @@ export default function Header({
 
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center gap-3">
-            {isLoading ? (
+            {!isMounted || isLoading ? (
               <div className="w-8 h-8 rounded-full skeleton" />
             ) : user ? (
               <>
@@ -281,7 +296,7 @@ export default function Header({
 
           {/* Mobile Buttons */}
           <div className="md:hidden flex items-center gap-1">
-            {isLoading ? (
+            {!isMounted || isLoading ? (
               <div className="w-8 h-8 rounded-full skeleton" />
             ) : user ? (
               /* Logged in: Show user avatar with dropdown */

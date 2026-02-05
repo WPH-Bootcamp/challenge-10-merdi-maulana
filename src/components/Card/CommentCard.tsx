@@ -41,6 +41,7 @@ export default function CommentCard({
                 width={avatarSize}
                 height={avatarSize}
                 className="rounded-full object-cover"
+                style={{ width: avatarSize, height: avatarSize }}
               />
             ) : (
               <div
