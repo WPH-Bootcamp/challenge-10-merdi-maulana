@@ -1,24 +1,22 @@
-/**
- * Home Page
- * 
- * TODO: Implement homepage sesuai dengan design Figma
- * - Tampilkan daftar artikel blog
- * - Implement search/filter jika diperlukan
- * - Handle loading dan error states
- */
+import BlogList from "@/components/List/BlogList";
+import { Suspense } from "react";
 
-export default function Home() {
+interface HomePageProps {
+  searchParams: Promise<{ q?: string; category?: string; page?: string }>;
+}
+
+export default async function Home({ searchParams }: HomePageProps) {
+  const params = await searchParams;
+  const searchQuery = params.q || "";
+  const category = params.category || "all";
+  const page = Number(params.page) || 1;
+
   return (
     <div className="min-h-screen">
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Blog App Challenge</h1>
-        
-        {/* TODO: Implement blog posts list here */}
-        <div className="space-y-4">
-          <p className="text-gray-600">
-            Mulai implementasi homepage di sini sesuai dengan design Figma!
-          </p>
-        </div>
+      <main className="container mx-auto px-4 pt-8">
+        <Suspense>
+          <BlogList searchQuery={searchQuery} category={category} page={page} />
+        </Suspense>
       </main>
     </div>
   );
