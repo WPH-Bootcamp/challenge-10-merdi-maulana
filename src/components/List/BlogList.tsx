@@ -57,46 +57,22 @@ export default async function BlogList({
 
   if (posts.length === 0) {
     return (
-      <div className="card p-12 text-center">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center">
-          <svg
-            className="w-10 h-10 text-[var(--text-muted)]"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-          {searchQuery ? `No results for "${searchQuery}"` : "No articles yet"}
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <img
+          src="/assets/empty-document.svg"
+          alt="No posts"
+          className="w-20 h-20 mb-6"
+        />
+        <h3 className="text-base font-semibold text-[var(--text-primary)] mb-2">
+          {searchQuery
+            ? `No results for "${searchQuery}"`
+            : "No posts from this user yet"}
         </h3>
-        <p className="text-[var(--text-secondary)] mb-6">
+        <p className="text-sm text-[var(--text-secondary)]">
           {searchQuery
             ? "Try different keywords or remove filters"
-            : "Be the first to write an article!"}
+            : "Stay tuned for future posts"}
         </p>
-        <Link href="/create" className="btn btn-primary">
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Write First Article
-        </Link>
       </div>
     );
   }

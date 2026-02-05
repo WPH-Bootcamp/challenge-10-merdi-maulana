@@ -214,9 +214,9 @@ export default function CommentList({
             if (e.target === e.currentTarget) setShowModal(false);
           }}
         >
-          <div className="bg-[var(--bg-primary)] rounded-xl w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl">
+          <div className="bg-white rounded-xl w-full max-w-xl max-h-[85vh] flex flex-col shadow-2xl">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-5 border-b border-[var(--border-primary)]">
+            <div className="flex items-center justify-between p-5 pb-0 border-[var(--border-primary)]">
               <h3 className="text-lg font-bold text-[var(--text-primary)]">
                 Comments({comments.length})
               </h3>
@@ -246,9 +246,6 @@ export default function CommentList({
               {/* Comment Form in Modal */}
               {user && (
                 <div className="mb-6">
-                  <h3 className="text-xl font-bold text-[var(--text-primary)] mb-6">
-                    Comments({comments.length})
-                  </h3>
                   <p className="text-sm font-semibold text-[var(--text-primary)] mb-3">
                     Give your Comments
                   </p>
@@ -272,7 +269,7 @@ export default function CommentList({
               )}
 
               {/* Comments List in Modal */}
-              <div className="space-y-4">
+              <div className="space-y-4 ">
                 {comments.map((comment) => (
                   <CommentCard
                     key={comment.id}

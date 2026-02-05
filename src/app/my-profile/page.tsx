@@ -371,7 +371,7 @@ export default function MyProfilePage() {
   }
 
   return (
-    <div className="min-h-screen px-4">
+    <div className="min-h-screen max-w-2xl flex flex-col mx-auto px-4">
       {/* Profile Header */}
       <div className="bg-white border-b border-neutral-300">
         <div className="container pt-6">
@@ -417,7 +417,7 @@ export default function MyProfilePage() {
           </div>
 
           {/* Tabs */}
-          <div className="grid grid-cols-2 mt-6">
+          <div className="grid grid-cols-2 mt-6 md:w-88">
             <button
               onClick={() => setActiveTab("posts")}
               className={`pb-3 text-sm font-medium transition-colors relative ${
@@ -452,29 +452,36 @@ export default function MyProfilePage() {
       <div className="container py-4">
         {activeTab === "posts" ? (
           <>
-            {/* Write Post Button */}
-            <Link
-              href="/create"
-              className="flex items-center justify-center gap-2 w-full py-3 bg-primary-300 text-white rounded-full font-medium hover:bg-primary-400 transition-colors mb-4"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                />
-              </svg>
-              Write Post
-            </Link>
+            {isLoadingPosts && (
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg hidden md:block font-bold text-black border-neutral-300">
+                  {posts.length} Post{posts.length !== 1 ? "s" : ""}
+                </h2>
+                {/* Write Post Button */}
+                <Link
+                  href="/create"
+                  className="flex items-center justify-center gap-2 w-full md:w-50 py-3 bg-primary-300 text-white rounded-full font-medium hover:bg-primary-400 transition-colors mb-4"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    />
+                  </svg>
+                  Write Post
+                </Link>
+              </div>
+            )}
 
             {/* Posts Header */}
-            <h2 className="text-lg font-bold text-black mb-4 pt-4 border-t border-neutral-300">
+            <h2 className="text-lg font-bold md:hidden text-black mb-4 pt-4 border-t border-neutral-300">
               {posts.length} Post{posts.length !== 1 ? "s" : ""}
             </h2>
 
@@ -484,10 +491,27 @@ export default function MyProfilePage() {
                 <div className="w-8 h-8 border-4 border-primary-300 border-t-transparent rounded-full animate-spin" />
               </div>
             ) : posts.length === 0 ? (
-              <div className="text-center py-12">
+              <div className="text-center py-12 justify-center flex flex-col items-center mt-20">
                 <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-neutral-100 flex items-center justify-center">
+                  <img
+                    src="/assets/empty-document.svg"
+                    alt="No posts"
+                    className="w-20 h-20 mb-6"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-black mb-2">
+                  Your writing journey starts here
+                </h3>
+                <p className="text-neutral-500 mb-6">
+                  No posts yet, but every great writer starts with the first
+                  one.
+                </p>
+                <Link
+                  href="/create"
+                  className="flex items-center justify-center gap-2 w-full md:w-50 py-3 bg-primary-300 text-white rounded-full font-medium hover:bg-primary-400 transition-colors mb-4"
+                >
                   <svg
-                    className="w-10 h-10 text-neutral-400"
+                    className="w-5 h-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -495,17 +519,12 @@ export default function MyProfilePage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      strokeWidth={2}
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                     />
                   </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-black mb-2">
-                  No posts yet
-                </h3>
-                <p className="text-neutral-500 mb-6">
-                  Start sharing your thoughts with the world!
-                </p>
+                  Write Post
+                </Link>
               </div>
             ) : (
               <div className="space-y-6">
@@ -571,7 +590,7 @@ export default function MyProfilePage() {
           </>
         ) : (
           /* Password Change Form */
-          <div className="max-w-md">
+          <div className="max-w-md ">
             <h2 className="text-lg font-bold text-black mb-6">
               Change Password
             </h2>

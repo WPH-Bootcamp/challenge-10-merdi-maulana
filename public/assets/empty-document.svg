@@ -1,0 +1,12 @@
+<svg width="89" height="88" viewBox="0 0 89 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Back shadow document -->
+  <rect x="0" y="10" width="68" height="78" rx="2" fill="#29ABE2"/>
+  
+  <!-- Front document -->
+  <rect x="21" y="0" width="68" height="78" rx="2" fill="#DCEBF5"/>
+  
+  <!-- Lines on document -->
+  <line x1="33" y1="30" x2="77" y2="30" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+  <line x1="33" y1="42" x2="77" y2="42" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+  <line x1="33" y1="54" x2="65" y2="54" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+</svg>

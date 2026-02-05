@@ -87,7 +87,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen px-4">
+    <div className="min-h-screen flex flex-col max-w-[800px] mx-auto px-4">
       {/* Profile Header */}
       <div className="bg-white border-b border-neutral-300">
         <div className="container pt-8 pb-5">
@@ -97,9 +97,9 @@ export default function ProfilePage() {
               <Image
                 src={getImageUrl(userData.avatarUrl)}
                 alt={userData.name}
-                width={40}
-                height={40}
-                className="rounded-full object-cover ring-4 ring-[var(--accent-light)]"
+                width={80}
+                height={80}
+                className="w-10 h-10 md:w-20 md:h-20 rounded-full object-cover ring-4 ring-[var(--accent-light)]"
               />
             ) : (
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--accent-primary)] to-[var(--accent-secondary)] flex items-center justify-center text-white text-2xl font-bold ring-4 ring-[var(--accent-light)] flex-shrink-0">
@@ -108,40 +108,32 @@ export default function ProfilePage() {
             )}
 
             {/* Info */}
-            <div>
-              <h1 className="text-sm font-bold text-[var(--text-primary)]">
+            <div className="flex flex-col gap-1">
+              <h1 className="text-sm md:text-xl font-bold text-[var(--text-primary)]">
                 {userData.name}
               </h1>
-              <p className="text-xs">{userData.headline || "Blogger"}</p>
+              <p className="text-xs md:text-sm">
+                {userData.headline || "Blogger"}
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       {/* User's Posts */}
-      <div className="container pt-4">
+      <div className="container pt-4 flex flex-col gap-4">
         {posts.length === 0 ? (
-          <div className="card p-12 text-center">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-[var(--text-muted)]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </div>
-            <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-              No articles yet
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <img
+              src="/assets/empty-document.svg"
+              alt="No posts"
+              className="w-20 h-20 mb-6"
+            />
+            <h3 className="text-base font-semibold text-[var(--text-primary)] mb-2">
+              No posts from this user yet
             </h3>
-            <p className="text-[var(--text-secondary)] mb-6">
-              This user has not written any articles yet.
+            <p className="text-sm text-[var(--text-secondary)]">
+              Stay tuned for future posts
             </p>
           </div>
         ) : (
